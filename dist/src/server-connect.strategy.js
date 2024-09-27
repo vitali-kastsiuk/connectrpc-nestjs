@@ -14,12 +14,12 @@ const connect_fastify_1 = require("@connectrpc/connect-fastify");
 const microservices_1 = require("@nestjs/microservices");
 const platform_fastify_1 = require("@nestjs/platform-fastify");
 class ServerConnect extends microservices_1.Server {
-    constructor(port = 3000, host = '0.0.0.0') {
+    constructor(port = 3000, host = '0.0.0.0', fastifyOptions) {
         super();
         this.handlers = [];
         this.port = port;
         this.host = host;
-        this.adapter = new platform_fastify_1.FastifyAdapter();
+        this.adapter = new platform_fastify_1.FastifyAdapter(fastifyOptions);
     }
     listen(callback) {
         return __awaiter(this, void 0, void 0, function* () {

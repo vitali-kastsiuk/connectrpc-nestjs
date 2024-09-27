@@ -26,11 +26,16 @@ export class ServerConnect extends Server implements CustomTransportStrategy {
 
   private adapter: FastifyAdapter;
 
-  constructor(port: number = 3000, host: string = '0.0.0.0') {
+  constructor(
+    port: number = 3000,
+    host: string = '0.0.0.0',
+    fastifyOptions?: ConstructorParameters<typeof FastifyAdapter>[0]
+  ) {
     super();
     this.port = port;
     this.host = host;
-    this.adapter = new FastifyAdapter();
+
+    this.adapter = new FastifyAdapter(fastifyOptions as any);
   }
 
   public async listen(
